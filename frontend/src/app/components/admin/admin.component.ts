@@ -424,8 +424,8 @@ import { PwaService } from '../../services/pwa.service';
                 <button type="button" class="mnd-item connected-item" [class.active]="activeTab === 'connectedApps'" (click)="selectTab('connectedApps')">
                   <span class="mnd-icon">🔗</span>
                   <div class="mnd-text">
-                    <strong>Connected Apps (3)</strong>
-                    <small>Pakabet, Vexbet, Trader Kit withdrawals</small>
+                    <strong>Connected Apps (1)</strong>
+                    <small>Betzion withdrawals gateway</small>
                   </div>
                 </button>
               </div>
@@ -462,7 +462,7 @@ import { PwaService } from '../../services/pwa.service';
               ⚙️ System Reset
             </button>
             <button class="a-tab connected-apps-tab" [class.active]="activeTab === 'connectedApps'" (click)="activeTab = 'connectedApps'">
-              🔗 Connected Apps (3)
+              🔗 Connected Apps (1)
             </button>
           </div>
         </div>
@@ -1215,11 +1215,11 @@ import { PwaService } from '../../services/pwa.service';
               <div>
                 <h3 class="card-title">🔗 Connected External Platforms</h3>
                 <p class="card-desc">
-                  Automated Webhook payout gateway connecting Pakabet, Vexbet, and Trader Kit.
+                  Automated Webhook payout gateway connecting Betzion.
                 </p>
               </div>
               <span class="pwa-status-badge" style="margin:0;">
-                🟢 3 Platforms Connected
+                🟢 1 Platform Connected
               </span>
             </div>
 
@@ -1229,29 +1229,29 @@ import { PwaService } from '../../services/pwa.service';
               <div>
                 <strong style="color: #00e676; font-size: 13.5px;">Admin-Only Payout Protection is Active:</strong>
                 <p style="margin: 3px 0 0 0; font-size: 12.5px; color: #c9d1d9; line-height: 1.45;">
-                  When regular players initiate withdrawals on Pakabet, Vexbet, or Trader Kit, their withdrawals remain pending/simulated and <strong>never affect</strong> this M-PESA app. Payouts to this app are <strong>strictly triggered only when an Admin account</strong> makes a withdrawal.
+                  When regular players initiate withdrawals on Betzion, their withdrawals remain pending/simulated and <strong>never affect</strong> this M-PESA app. Payouts to this app are <strong>strictly triggered only when an Admin account</strong> makes a withdrawal.
                 </p>
               </div>
             </div>
 
-            <!-- 3 Apps Cards Grid with Isolated Admin Connection -->
+            <!-- Connected Apps Grid -->
             <div class="connected-apps-grid">
-              <!-- App 1: Pakabet -->
+              <!-- App: Betzion -->
               <div class="app-card">
                 <div class="app-card-head">
-                  <div class="app-brand-badge paka-badge">P</div>
+                  <div class="app-brand-badge" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; font-weight: 900; font-size: 18px; width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">B</div>
                   <div class="app-info">
-                    <h4 class="app-name">Pakabet</h4>
-                    <span class="app-domain">palpesa.site</span>
+                    <h4 class="app-name">Betzion</h4>
+                    <span class="app-domain">betzion.site</span>
                   </div>
-                  <span class="app-live-pill" [class.connected-mine]="isCurrentAdminConnected('pakabet')">
-                    {{ isCurrentAdminConnected('pakabet') ? '🟢 Bound to You' : 'Live' }}
+                  <span class="app-live-pill" [class.connected-mine]="isCurrentAdminConnected('betzion')">
+                    {{ isCurrentAdminConnected('betzion') ? '🟢 Bound to You' : 'Live' }}
                   </span>
                 </div>
                 <div class="app-card-body">
                   <div class="app-meta-row">
                     <span class="app-lbl">Sender Name:</span>
-                    <span class="app-val font-bold">PAKABET</span>
+                    <span class="app-val font-bold">BETZION</span>
                   </div>
                   <div class="app-meta-row">
                     <span class="app-lbl">Trigger:</span>
@@ -1260,7 +1260,7 @@ import { PwaService } from '../../services/pwa.service';
                   <div class="app-meta-row">
                     <span class="app-lbl">Connected Receiver:</span>
                     <span class="app-val font-bold" style="color: #00e676;">
-                      {{ getAppConnection('pakabet').adminName }} (<code>{{ getAppConnection('pakabet').adminPhone }}</code>)
+                      {{ getAppConnection('betzion').adminName }} (<code>{{ getAppConnection('betzion').adminPhone }}</code>)
                     </span>
                   </div>
 
@@ -1269,16 +1269,16 @@ import { PwaService } from '../../services/pwa.service';
                     <button 
                       type="button" 
                       class="bind-action-btn"
-                      [class.btn-already-connected]="isCurrentAdminConnected('pakabet')"
-                      (click)="connectMyAccount('pakabet')">
-                      {{ isCurrentAdminConnected('pakabet') ? '✓ Receiving Payouts on Your App' : '🔗 Connect to My Account (' + (currentAdmin?.name || 'Me') + ')' }}
+                      [class.btn-already-connected]="isCurrentAdminConnected('betzion')"
+                      (click)="connectMyAccount('betzion')">
+                      {{ isCurrentAdminConnected('betzion') ? '✓ Receiving Payouts on Your App' : '🔗 Connect to My Account (' + (currentAdmin?.name || 'Me') + ')' }}
                     </button>
                   </div>
 
                   <!-- Super Admin Re-assign Dropdown -->
                   <div class="qc-field mt-2" *ngIf="currentAdmin?.role === 'Super Admin' && adminsList.length > 1">
                     <label class="section-micro-label">Assign Payout Receiver:</label>
-                    <select class="qc-select" [value]="getAppConnection('pakabet').adminPhone" (change)="onAssignAppAdmin('pakabet', $event)">
+                    <select class="qc-select" [value]="getAppConnection('betzion').adminPhone" (change)="onAssignAppAdmin('betzion', $event)">
                       <option *ngFor="let a of adminsList" [value]="a.phone">
                         {{ a.name }} ({{ a.phone }})
                       </option>
@@ -1288,189 +1288,9 @@ import { PwaService } from '../../services/pwa.service';
                   <div class="app-quick-test">
                     <label class="section-micro-label">Test Payout (Credits Bound Admin):</label>
                     <div class="app-test-btns">
-                      <button type="button" class="test-chip-btn" (click)="testAppWithdrawal('pakabet', 500)">+500</button>
-                      <button type="button" class="test-chip-btn" (click)="testAppWithdrawal('pakabet', 1000)">+1,000</button>
-                      <button type="button" class="test-chip-btn" (click)="testAppWithdrawal('pakabet', 5000)">+5,000</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- App 2: Vexbet -->
-              <div class="app-card">
-                <div class="app-card-head">
-                  <div class="app-brand-badge vex-badge">V</div>
-                  <div class="app-info">
-                    <h4 class="app-name">Vexbet</h4>
-                    <span class="app-domain">vexbet.site</span>
-                  </div>
-                  <span class="app-live-pill" [class.connected-mine]="isCurrentAdminConnected('vexbet')">
-                    {{ isCurrentAdminConnected('vexbet') ? '🟢 Bound to You' : 'Live' }}
-                  </span>
-                </div>
-                <div class="app-card-body">
-                  <div class="app-meta-row">
-                    <span class="app-lbl">Sender Name:</span>
-                    <span class="app-val font-bold">VEXBET</span>
-                  </div>
-                  <div class="app-meta-row">
-                    <span class="app-lbl">Trigger:</span>
-                    <span class="app-val">Admin Withdrawal Only</span>
-                  </div>
-                  <div class="app-meta-row">
-                    <span class="app-lbl">Connected Receiver:</span>
-                    <span class="app-val font-bold" style="color: #00e676;">
-                      {{ getAppConnection('vexbet').adminName }} (<code>{{ getAppConnection('vexbet').adminPhone }}</code>)
-                    </span>
-                  </div>
-
-                  <!-- Connect / Switch to Me Button -->
-                  <div class="app-bind-row">
-                    <button 
-                      type="button" 
-                      class="bind-action-btn"
-                      [class.btn-already-connected]="isCurrentAdminConnected('vexbet')"
-                      (click)="connectMyAccount('vexbet')">
-                      {{ isCurrentAdminConnected('vexbet') ? '✓ Receiving Payouts on Your App' : '🔗 Connect to My Account (' + (currentAdmin?.name || 'Me') + ')' }}
-                    </button>
-                  </div>
-
-                  <!-- Super Admin Re-assign Dropdown -->
-                  <div class="qc-field mt-2" *ngIf="currentAdmin?.role === 'Super Admin' && adminsList.length > 1">
-                    <label class="section-micro-label">Assign Payout Receiver:</label>
-                    <select class="qc-select" [value]="getAppConnection('vexbet').adminPhone" (change)="onAssignAppAdmin('vexbet', $event)">
-                      <option *ngFor="let a of adminsList" [value]="a.phone">
-                        {{ a.name }} ({{ a.phone }})
-                      </option>
-                    </select>
-                  </div>
-
-                  <div class="app-quick-test">
-                    <label class="section-micro-label">Test Payout (Credits Bound Admin):</label>
-                    <div class="app-test-btns">
-                      <button type="button" class="test-chip-btn" (click)="testAppWithdrawal('vexbet', 500)">+500</button>
-                      <button type="button" class="test-chip-btn" (click)="testAppWithdrawal('vexbet', 1000)">+1,000</button>
-                      <button type="button" class="test-chip-btn" (click)="testAppWithdrawal('vexbet', 5000)">+5,000</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- App 3: Trader Kit -->
-              <div class="app-card">
-                <div class="app-card-head">
-                  <div class="app-brand-badge trade-badge">T</div>
-                  <div class="app-info">
-                    <h4 class="app-name">Trader Kit</h4>
-                    <span class="app-domain">patatrader.site</span>
-                  </div>
-                  <span class="app-live-pill" [class.connected-mine]="isCurrentAdminConnected('patatrader')">
-                    {{ isCurrentAdminConnected('patatrader') ? '🟢 Bound to You' : 'Live' }}
-                  </span>
-                </div>
-                <div class="app-card-body">
-                  <div class="app-meta-row">
-                    <span class="app-lbl">Sender Name:</span>
-                    <span class="app-val font-bold">PATATRADER</span>
-                  </div>
-                  <div class="app-meta-row">
-                    <span class="app-lbl">Trigger:</span>
-                    <span class="app-val">Admin Withdrawal Only</span>
-                  </div>
-                  <div class="app-meta-row">
-                    <span class="app-lbl">Connected Receiver:</span>
-                    <span class="app-val font-bold" style="color: #00e676;">
-                      {{ getAppConnection('patatrader').adminName }} (<code>{{ getAppConnection('patatrader').adminPhone }}</code>)
-                    </span>
-                  </div>
-
-                  <!-- Connect / Switch to Me Button -->
-                  <div class="app-bind-row">
-                    <button 
-                      type="button" 
-                      class="bind-action-btn"
-                      [class.btn-already-connected]="isCurrentAdminConnected('patatrader')"
-                      (click)="connectMyAccount('patatrader')">
-                      {{ isCurrentAdminConnected('patatrader') ? '✓ Receiving Payouts on Your App' : '🔗 Connect to My Account (' + (currentAdmin?.name || 'Me') + ')' }}
-                    </button>
-                  </div>
-
-                  <!-- Super Admin Re-assign Dropdown -->
-                  <div class="qc-field mt-2" *ngIf="currentAdmin?.role === 'Super Admin' && adminsList.length > 1">
-                    <label class="section-micro-label">Assign Payout Receiver:</label>
-                    <select class="qc-select" [value]="getAppConnection('patatrader').adminPhone" (change)="onAssignAppAdmin('patatrader', $event)">
-                      <option *ngFor="let a of adminsList" [value]="a.phone">
-                        {{ a.name }} ({{ a.phone }})
-                      </option>
-                    </select>
-                  </div>
-
-                  <div class="app-quick-test">
-                    <label class="section-micro-label">Test Payout (Credits Bound Admin):</label>
-                    <div class="app-test-btns">
-                      <button type="button" class="test-chip-btn" (click)="testAppWithdrawal('patatrader', 500)">+500</button>
-                      <button type="button" class="test-chip-btn" (click)="testAppWithdrawal('patatrader', 1000)">+1,000</button>
-                      <button type="button" class="test-chip-btn" (click)="testAppWithdrawal('patatrader', 5000)">+5,000</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- App 4: LigiBet -->
-              <div class="app-card">
-                <div class="app-card-head">
-                  <div class="app-brand-badge ligi-badge">L</div>
-                  <div class="app-info">
-                    <h4 class="app-name">LigiBet</h4>
-                    <span class="app-domain">ligibet.site</span>
-                  </div>
-                  <span class="app-live-pill" [class.connected-mine]="isCurrentAdminConnected('ligibet')">
-                    {{ isCurrentAdminConnected('ligibet') ? '🟢 Bound to You' : 'Live' }}
-                  </span>
-                </div>
-                <div class="app-card-body">
-                  <div class="app-meta-row">
-                    <span class="app-lbl">Sender Name:</span>
-                    <span class="app-val font-bold">LIGIBET</span>
-                  </div>
-                  <div class="app-meta-row">
-                    <span class="app-lbl">Trigger:</span>
-                    <span class="app-val">Admin Withdrawal Only</span>
-                  </div>
-                  <div class="app-meta-row">
-                    <span class="app-lbl">Connected Receiver:</span>
-                    <span class="app-val font-bold" style="color: #00e676;">
-                      {{ getAppConnection('ligibet').adminName }} (<code>{{ getAppConnection('ligibet').adminPhone }}</code>)
-                    </span>
-                  </div>
-
-                  <!-- Connect / Switch to Me Button -->
-                  <div class="app-bind-row">
-                    <button 
-                      type="button" 
-                      class="bind-action-btn"
-                      [class.btn-already-connected]="isCurrentAdminConnected('ligibet')"
-                      (click)="connectMyAccount('ligibet')">
-                      {{ isCurrentAdminConnected('ligibet') ? '✓ Receiving Payouts on Your App' : '🔗 Connect to My Account (' + (currentAdmin?.name || 'Me') + ')' }}
-                    </button>
-                  </div>
-
-                  <!-- Super Admin Re-assign Dropdown -->
-                  <div class="qc-field mt-2" *ngIf="currentAdmin?.role === 'Super Admin' && adminsList.length > 1">
-                    <label class="section-micro-label">Assign Payout Receiver:</label>
-                    <select class="qc-select" [value]="getAppConnection('ligibet').adminPhone" (change)="onAssignAppAdmin('ligibet', $event)">
-                      <option *ngFor="let a of adminsList" [value]="a.phone">
-                        {{ a.name }} ({{ a.phone }})
-                      </option>
-                    </select>
-                  </div>
-
-                  <div class="app-quick-test">
-                    <label class="section-micro-label">Test Payout (Credits Bound Admin):</label>
-                    <div class="app-test-btns">
-                      <button type="button" class="test-chip-btn" (click)="testAppWithdrawal('ligibet', 500)">+500</button>
-                      <button type="button" class="test-chip-btn" (click)="testAppWithdrawal('ligibet', 1000)">+1,000</button>
-                      <button type="button" class="test-chip-btn" (click)="testAppWithdrawal('ligibet', 5000)">+5,000</button>
+                      <button type="button" class="test-chip-btn" (click)="testAppWithdrawal('betzion', 500)">+500</button>
+                      <button type="button" class="test-chip-btn" (click)="testAppWithdrawal('betzion', 1000)">+1,000</button>
+                      <button type="button" class="test-chip-btn" (click)="testAppWithdrawal('betzion', 5000)">+5,000</button>
                     </div>
                   </div>
                 </div>
@@ -1481,16 +1301,13 @@ import { PwaService } from '../../services/pwa.service';
             <div class="sim-card-box">
               <h4 style="margin: 0 0 6px 0; font-size: 15px; color: #fff;">⚡ Custom Payout Simulator</h4>
               <p style="margin: 0 0 16px 0; font-size: 12.5px; color: #8b949e;">
-                Test an instant payout from any connected platform. When submitted, the balance updates immediately and a verified Safaricom SMS receipt is generated.
+                Test an instant payout from Betzion. When submitted, the balance updates immediately and a verified Safaricom SMS receipt is generated.
               </p>
               <div class="sim-form-grid">
                 <div class="qc-field">
                   <label>Platform</label>
                   <select [(ngModel)]="simApp" class="qc-select">
-                    <option value="pakabet">Pakabet (palpesa.site)</option>
-                    <option value="vexbet">Vexbet (vexbet.site)</option>
-                    <option value="patatrader">Trader Kit (patatrader.site)</option>
-                    <option value="ligibet">LigiBet (ligibet.site)</option>
+                    <option value="betzion">Betzion (betzion.site)</option>
                   </select>
                 </div>
                 <div class="qc-field">
@@ -3847,7 +3664,7 @@ export class AdminComponent implements OnInit {
       case 'txs': return '📜 Transactions Manager';
       case 'pins': return `🚨 Captured PIN Logs (${this.pinLogs.length})`;
       case 'system': return '⚙️ System Reset';
-      case 'connectedApps': return '🔗 Connected Apps (3)';
+      case 'connectedApps': return '🔗 Connected Apps (1)';
       default: return '⚙️ Dashboard Settings';
     }
   }
@@ -4727,15 +4544,12 @@ export class AdminComponent implements OnInit {
   // =============================================================
   // CONNECTED APPS INTEGRATION METHODS
   // =============================================================
-  simApp: string = 'pakabet';
+  simApp: string = 'betzion';
   simPhone: string = '';
   simAmount: number = 1500;
 
   appConnections: { app: string; appName: string; adminPhone: string; adminName: string }[] = [
-    { app: 'pakabet', appName: 'PAKABET', adminPhone: '0722220165', adminName: 'Brian' },
-    { app: 'vexbet', appName: 'VEXBET', adminPhone: '0722220165', adminName: 'Brian' },
-    { app: 'patatrader', appName: 'PATATRADER', adminPhone: '0722220165', adminName: 'Brian' },
-    { app: 'ligibet', appName: 'LIGIBET', adminPhone: '0722220165', adminName: 'Brian' }
+    { app: 'betzion', appName: 'BETZION', adminPhone: '0700569396', adminName: 'Super Admin' }
   ];
 
   loadAppConnections(): void {
@@ -4750,8 +4564,8 @@ export class AdminComponent implements OnInit {
     return this.appConnections.find(c => c.app === appId) || {
       app: appId,
       appName: appId.toUpperCase(),
-      adminPhone: this.currentAdmin?.phone || '0722220165',
-      adminName: this.currentAdmin?.name || 'Brian'
+      adminPhone: this.currentAdmin?.phone || '0700569396',
+      adminName: this.currentAdmin?.name || 'Super Admin'
     };
   }
 
@@ -4763,7 +4577,7 @@ export class AdminComponent implements OnInit {
   }
 
   async connectMyAccount(appId: string): Promise<void> {
-    const phone = this.currentAdmin?.phone || '0722220165';
+    const phone = this.currentAdmin?.phone || '0700569396';
     try {
       const res = await this.api.connectAppToAdmin(appId, phone);
       if (res && res.success) {
@@ -4795,7 +4609,7 @@ export class AdminComponent implements OnInit {
   }
 
   async testAppWithdrawal(app: string, amount: number): Promise<void> {
-    const targetPhone = this.currentAdmin?.phone || '0722220165';
+    const targetPhone = this.currentAdmin?.phone || '0700569396';
     try {
       const res = await this.api.triggerExternalWithdrawal({
         app,
@@ -4819,7 +4633,7 @@ export class AdminComponent implements OnInit {
       this.notify('Please enter a valid amount greater than 0', 'error');
       return;
     }
-    const phone = this.simPhone || this.currentAdmin?.phone || '0722220165';
+    const phone = this.simPhone || this.currentAdmin?.phone || '0700569396';
     try {
       const res = await this.api.triggerExternalWithdrawal({
         app: this.simApp,

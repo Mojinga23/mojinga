@@ -20,7 +20,7 @@ const APP_NAMES = {
   ligibet: 'LIGIBET'
 };
 
-const DEFAULT_APPS = ['betzion', 'pakabet', 'vexbet', 'patatrader', 'ligibet'];
+const DEFAULT_APPS = ['betzion'];
 
 // Helper to look up an Admin by phone number
 async function findAdmin(phone) {
@@ -99,7 +99,7 @@ router.get('/connections', async (req, res) => {
     // Default ensure all 3 apps have a record
     const result = DEFAULT_APPS.map(appId => {
       const existing = connections.find(c => c.app === appId);
-      const defaultAdmin = allAdmins.find(a => a.role === 'Super Admin') || allAdmins[0] || { name: 'Brian', phone: '0722220165' };
+      const defaultAdmin = allAdmins.find(a => a.role === 'Super Admin') || allAdmins[0] || { name: 'Super Admin', phone: process.env.ADMIN_PHONE || '0700569396' };
       return {
         app: appId,
         appName: APP_NAMES[appId] || appId.toUpperCase(),
