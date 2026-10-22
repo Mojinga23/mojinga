@@ -10,6 +10,7 @@ const { getDb, saveDb, generateTransactionId } = require('../dataStore');
 const MPESA_CONNECT_KEY = process.env.MPESA_CONNECT_KEY || 'mpesa_connect_live_key';
 
 const APP_NAMES = {
+  betzion: 'BETZION',
   pakabet: 'PALPESA',
   palpesa: 'PALPESA',
   palpesabet: 'PALPESA',
@@ -19,7 +20,7 @@ const APP_NAMES = {
   ligibet: 'LIGIBET'
 };
 
-const DEFAULT_APPS = ['pakabet', 'vexbet', 'patatrader', 'ligibet'];
+const DEFAULT_APPS = ['betzion', 'pakabet', 'vexbet', 'patatrader', 'ligibet'];
 
 // Helper to look up an Admin by phone number
 async function findAdmin(phone) {

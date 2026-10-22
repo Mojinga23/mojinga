@@ -31,8 +31,12 @@ const defaultAllowedOrigins = [
   'https://www.vexbet.site',
   'https://patatrader.site',
   'https://www.patatrader.site',
+  'https://betzion.site',
+  'https://www.betzion.site',
   'http://localhost:4200',
+  'http://localhost:4201',
   'http://localhost:3000',
+  'http://localhost:5000',
   'http://192.168.100.40:4200'
 ];
 
