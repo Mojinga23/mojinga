@@ -1,0 +1,40 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="yellowBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFC107"/>
+      <stop offset="50%" stop-color="#FFB300"/>
+      <stop offset="100%" stop-color="#FFA000"/>
+    </linearGradient>
+    <filter id="badgeShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Clip path to keep head and body inside the circle -->
+  <clipPath id="avatarCircleClip">
+    <circle cx="50" cy="50" r="48"/>
+  </clipPath>
+
+  <!-- Main Yellow Avatar Circle -->
+  <circle cx="50" cy="50" r="48" fill="url(#yellowBg)"/>
+
+  <!-- Android Default Contact Silhouette -->
+  <g clip-path="url(#avatarCircleClip)">
+    <!-- Head -->
+    <circle cx="50" cy="34" r="14" fill="#212121"/>
+    <!-- Shoulders / Torso -->
+    <ellipse cx="50" cy="71" rx="25" ry="14" fill="#212121"/>
+  </g>
+
+  <!-- Google Messages Badge on Bottom Right -->
+  <g filter="url(#badgeShadow)">
+    <!-- White rounded container badge -->
+    <rect x="52" y="52" width="46" height="46" rx="14" fill="#FFFFFF"/>
+
+    <!-- Google Messages Vibrant Blue Speech Bubble -->
+    <path d="M 61 62 C 61 58.5 63.5 56 67 56 L 83 56 C 86.5 56 89 58.5 89 62 L 89 74 C 89 77.5 86.5 80 83 80 L 72 80 L 64 87 L 65.5 80 L 67 80 C 63.5 80 61 77.5 61 74 Z" fill="#1A73E8"/>
+
+    <!-- Inner Chat Lines / Tail Detail -->
+    <path d="M 68 64.5 H 82 M 68 71.5 H 77" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+  </g>
+</svg>

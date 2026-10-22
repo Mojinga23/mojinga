@@ -1,0 +1,7 @@
+<div class="app-root-wrapper" [class.admin-layout]="isAdminRoute">
+  <main class="viewport-area">
+    <div [class.mobile-frame]="!isAdminRoute" [class.full-view]="isAdminRoute">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

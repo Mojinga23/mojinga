@@ -1,0 +1,160 @@
+/* Safaricom M-PESA Mobile Theme */
+:root {
+  --bg-main: #0e1012;
+  --bg-card: #171b1d;
+  --bg-card-alt: #1c2022;
+  --bg-input: #141719;
+  --bg-pill: #25292c;
+  --bg-pill-active: #00c853;
+  --primary-green: #00c853;
+  --primary-green-dark: #00a844;
+  --primary-red: #e50914;
+  --text-white: #ffffff;
+  --text-muted: #8e959b;
+  --text-sub: #adb5bd;
+  --border-subtle: #24292d;
+  --border-green: rgba(0, 200, 83, 0.45);
+  --border-active: #00c853;
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+input, textarea, [contenteditable="true"] {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #000000;
+  color: var(--text-white);
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+/* Angular route hosts must have a concrete height for their inner flex
+   scrollers to stay within the device viewport. */
+app-root,
+app-home,
+app-send-money,
+app-pin-entry,
+app-splash {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+}
+
+/* Hide scrollbars for app-like native feel */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
+
+/* Base button reset */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+  outline: none;
+  touch-action: manipulation;
+  transition:
+    transform 150ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    opacity 180ms ease;
+}
+
+button:not(:disabled):active {
+  transform: scale(0.975);
+}
+
+button:disabled {
+  cursor: default;
+}
+
+input {
+  transition: color 180ms ease, opacity 180ms ease;
+}
+
+/* Common Status Bar Icons */
+.icon-battery-svg {
+  width: 18px;
+  height: 11px;
+}
+
+/* Bottom Android Navigation Gesture bar */
+.mobile-gesture-bar {
+  width: 100%;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 6px;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.gesture-pill {
+  width: 110px;
+  height: 4px;
+  background-color: #636b72;
+  border-radius: 4px;
+  opacity: 0.6;
+}
+
+/* Animated fade transitions */
+.fade-in {
+  animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Native-feeling mobile scrolling without visual scrollbars. */
+.scroll-content,
+.scroll-body,
+.success-scroll-body {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  scroll-behavior: smooth;
+  min-height: 0;
+  touch-action: pan-y;
+  overflow-y: auto;
+}
+
+/* Respect an operating-system preference for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

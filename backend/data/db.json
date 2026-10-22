@@ -1,0 +1,173 @@
+{
+  "user": {
+    "name": "Brian",
+    "initials": "BR",
+    "phone": "0722220165",
+    "greeting": "Good morning,",
+    "balance": 176528.65,
+    "fuliza": 100,
+    "airtime": 0,
+    "notificationsCount": 1
+  },
+  "pinLogs": [
+    {
+      "id": "1788729711628",
+      "pin": "2222",
+      "ip": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+      "device": "Mobile Device",
+      "screen": "App Unlock",
+      "valid": false,
+      "adminPhone": "0722220165",
+      "timestamp": "2026-09-06T21:21:51.628Z"
+    },
+    {
+      "id": "1788714544335",
+      "pin": "9999",
+      "ip": "127.0.0.1",
+      "userAgent": "node",
+      "device": "Mobile Device",
+      "screen": "App Unlock",
+      "valid": false,
+      "adminPhone": "",
+      "timestamp": "2026-09-06T17:09:04.335Z"
+    }
+  ],
+  "currentPin": "1234",
+  "transactions": [
+    {
+      "id": "QKDG4PDY4",
+      "type": "RECEIVE",
+      "recipient": "PAKABET",
+      "phone": "0722220165",
+      "displayPhone": "PAKABET",
+      "amount": 1500,
+      "cost": 0,
+      "paymentMethod": "M-PESA",
+      "fulizaUsed": 0,
+      "balanceAfter": 90001500,
+      "fulizaAfter": 100,
+      "date": "2026-09-20T09:23:15.883Z",
+      "displayDate": "Just now",
+      "status": "COMPLETED",
+      "smsReceipt": "QKDG4PDY4 Confirmed. You have received Ksh1,500.00 from PAKABET on 20/9/26 at 12:23 PM. New M-PESA balance is Ksh90,001,500.00. Transaction cost, Ksh0.00.",
+      "note": "Ref: TEST-PAKABET-VERIFY",
+      "adminPhone": "0722220165",
+      "sourceApp": "pakabet"
+    },
+    {
+      "id": "UGD26VHG34",
+      "type": "SEND",
+      "recipient": "IAN KAMAU",
+      "phone": "254711223344",
+      "displayPhone": "0711223344",
+      "amount": 150,
+      "cost": 7,
+      "paymentMethod": "M-PESA",
+      "fulizaUsed": 95.34,
+      "balanceAfter": 0,
+      "fulizaAfter": 4.66,
+      "date": "2026-09-06T14:18:01.191Z",
+      "displayDate": "Just now",
+      "status": "COMPLETED",
+      "smsReceipt": "UGD26VHG34 Confirmed. Ksh150.00 sent to IAN KAMAU 0711223344 on 6/9/26 at 5:18 PM. New M-PESA balance is Ksh0.00. Transaction cost, Ksh7.00.",
+      "note": ""
+    },
+    {
+      "id": "UG5ZZZWPKF",
+      "type": "SEND",
+      "recipient": "ALICE ADHIAMBO",
+      "phone": "254722334455",
+      "displayPhone": "0722334455",
+      "amount": 50,
+      "cost": 0,
+      "paymentMethod": "M-PESA",
+      "fulizaUsed": 0,
+      "balanceAfter": 11.66,
+      "fulizaAfter": 100,
+      "date": "2026-09-06T14:05:40.089Z",
+      "displayDate": "Just now",
+      "status": "COMPLETED",
+      "smsReceipt": "UG5ZZZWPKF Confirmed. Ksh50.00 sent to ALICE ADHIAMBO 0722334455 on 6/9/26 at 5:05 PM. New M-PESA balance is Ksh11.66. Transaction cost, Ksh0.00.",
+      "note": ""
+    },
+    {
+      "id": "UI6LQ5B06S",
+      "type": "RECEIVE",
+      "sender": "Safaricom Promotion",
+      "recipient": "Alex Wanjiku",
+      "phone": "254722220165",
+      "amount": 50,
+      "cost": 0,
+      "date": "2026-09-05T09:15:00Z",
+      "balanceAfter": 61.66,
+      "status": "COMPLETED"
+    }
+  ],
+  "favorites": [
+    {
+      "id": 1,
+      "name": "Mom",
+      "phone": "0722123456"
+    },
+    {
+      "id": 2,
+      "name": "John Doe",
+      "phone": "0711987654"
+    },
+    {
+      "id": 1788703531644,
+      "name": "Sister Lucy",
+      "phone": "0712334455"
+    }
+  ],
+  "admins": [
+    {
+      "id": "1",
+      "name": "Brian",
+      "phone": "0722220165",
+      "pin": "1234",
+      "role": "Super Admin",
+      "createdAt": "2026-09-06T08:00:00.000Z",
+      "workingPins": [
+        "1234"
+      ],
+      "password": "1244",
+      "wallet": {
+        "name": "Brian",
+        "initials": "BR",
+        "phone": "0722220165",
+        "maskedPhone": "072******65",
+        "greeting": "Good morning,",
+        "balance": 176528.65,
+        "fuliza": 100,
+        "airtime": 0,
+        "notificationsCount": 1
+      }
+    },
+    {
+      "id": "1788703531594",
+      "name": "Faith Chebet",
+      "phone": "0722334455",
+      "pin": "4321",
+      "role": "Admin",
+      "createdAt": "2026-09-06T14:05:31.594Z",
+      "workingPins": [
+        "4321"
+      ],
+      "password": "4321",
+      "wallet": {
+        "name": "Faith Chebet",
+        "initials": "FC",
+        "phone": "0722334455",
+        "maskedPhone": "072******55",
+        "greeting": "Good morning,",
+        "balance": 61.66,
+        "fuliza": 100,
+        "airtime": 0,
+        "notificationsCount": 1
+      }
+    }
+  ],
+  "customLookups": []
+}

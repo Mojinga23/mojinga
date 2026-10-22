@@ -1,0 +1,25 @@
+{
+  "name": "my-oneapp",
+  "version": "1.0.0",
+  "description": "My OneApp - Safaricom M-PESA Interface",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "build": "cd frontend && npm install && npm run build || echo 'Using prebuilt dist'",
+    "build:backend": "npm --prefix backend install",
+    "build:full": "npm --prefix frontend install && npm --prefix frontend run build && npm --prefix backend install"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.2",
+    "selfsigned": "^5.5.0"
+  },
+  "keywords": ["pwa", "angular", "mpesa", "my-oneapp"],
+  "author": "",
+  "license": "ISC"
+}
