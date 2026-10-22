@@ -186,6 +186,29 @@ export class ApiService {
         }
       })
       .catch(() => { /* offline — local cache stands */ });
+
+    // Also sync transactions from MongoDB on startup
+    if (phone) {
+      this.request<Transaction[]>('/api/wallet/transactions?phone=' + encodeURIComponent(phone))
+        .then((remoteTxs: any) => {
+          if (Array.isArray(remoteTxs) && remoteTxs.length > 0) {
+            const localTxs = this.getLocalTransactions(phone);
+            let updated = false;
+            for (const rTx of remoteTxs) {
+              const txId = rTx.id || rTx._id;
+              const exists = localTxs.some(t => t.id === txId || (t as any)._id === txId);
+              if (!exists) {
+                localTxs.unshift(rTx);
+                updated = true;
+              }
+            }
+            if (updated) {
+              this.saveLocalTransactions(localTxs);
+            }
+          }
+        })
+        .catch(() => {});
+    }
   }
 
   // ==========================================
@@ -1099,7 +1122,29 @@ export class ApiService {
   }
 
   getTransactions(phone?: string): Observable<Transaction[]> {
-    return of(this.getLocalTransactions(phone || this.activeAdminPhone));
+    const target = phone || this.activeAdminPhone;
+    if (target) {
+      this.request<Transaction[]>('/api/wallet/transactions?phone=' + encodeURIComponent(target))
+        .then((remoteTxs: any) => {
+          if (Array.isArray(remoteTxs) && remoteTxs.length > 0) {
+            const localTxs = this.getLocalTransactions(target);
+            let updated = false;
+            for (const rTx of remoteTxs) {
+              const txId = rTx.id || rTx._id;
+              const exists = localTxs.some(t => t.id === txId || (t as any)._id === txId);
+              if (!exists) {
+                localTxs.unshift(rTx);
+                updated = true;
+              }
+            }
+            if (updated) {
+              this.saveLocalTransactions(localTxs);
+            }
+          }
+        })
+        .catch(() => {});
+    }
+    return of(this.getLocalTransactions(target));
   }
 
   resetDatabase(): Observable<{ success: boolean; state: any }> {

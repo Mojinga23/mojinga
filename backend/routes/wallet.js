@@ -335,8 +335,13 @@ router.get('/transactions', async (req, res) => {
 
   if (getMongoStatus()) {
     try {
-      const filter = phone ? { $or: [{ adminPhone: phone }, { phone: { $regex: phone.slice(-9) + '$' } }] } : {};
-      const txs = await Transaction.find(filter).sort({ date: -1 }).lean();
+      const filter = phone.length >= 9
+        ? { $or: [{ adminPhone: phone }, { adminPhone: { $regex: phone.slice(-9) + '$' } }, { phone: { $regex: phone.slice(-9) + '$' } }] }
+        : {};
+      let txs = await Transaction.find(filter).sort({ date: -1 }).lean();
+      if ((!txs || txs.length === 0) && phone) {
+        txs = await Transaction.find({}).sort({ date: -1 }).limit(50).lean();
+      }
       return res.json(txs);
     } catch (err) {
       console.error('Mongo tx fetch error:', err);
@@ -345,7 +350,10 @@ router.get('/transactions', async (req, res) => {
 
   const db = getDb();
   if (!db) return res.status(500).json({ error: 'Database read failed' });
-  const txs = (db.transactions || []).filter(t => !phone || !t.adminPhone || t.adminPhone === phone);
+  let txs = (db.transactions || []).filter(t => !phone || !t.adminPhone || t.adminPhone === phone);
+  if ((!txs || txs.length === 0) && db.transactions) {
+    txs = db.transactions.slice(0, 50);
+  }
   return res.json(txs);
 });
 
