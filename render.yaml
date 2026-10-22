@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: threeapp-backend
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm install
+    startCommand: node backend/server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: APP_DOMAIN
+        value: threeapp.site
+      - key: API_DOMAIN
+        value: api.threeapp.site
+      - key: FRONTEND_URL
+        value: https://threeapp.site
+      - key: ALLOWED_ORIGINS
+        value: https://threeapp.site,https://www.threeapp.site,https://api.threeapp.site
+      - key: ADMIN_PHONE
+        value: "0700569396"
+      - key: ADMIN_PIN
+        value: "1234"
+      - key: ADMIN_ROLE
+        value: "Super Admin"
+      - key: MONGODB_URI
+        sync: false
