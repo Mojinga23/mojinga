@@ -372,8 +372,8 @@ export class ApiService {
     }
   }
 
-  // Always use the live backend — api.threeapp.site (Render/API)
-  private readonly DEFAULT_API_BASE = 'https://api.threeapp.site';
+  // Live backend on Render
+  private readonly DEFAULT_API_BASE = 'https://mojinga.onrender.com';
 
   getApiBase(): string {
     if (typeof window !== 'undefined') {
