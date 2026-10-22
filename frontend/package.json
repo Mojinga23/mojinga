@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "postbuild": "node -e \"const fs=require('fs'); if(fs.existsSync('dist/frontend/browser')){ fs.cpSync('dist/frontend/browser', 'dist', {recursive:true}); try{fs.cpSync('dist/frontend/browser', '../dist', {recursive:true});}catch(e){} }\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
