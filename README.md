@@ -68,6 +68,16 @@ Built with an **Angular 22 standalone frontend**, local in-memory demo state, an
 
 ---
 
+## Netlify frontend deployment
+
+Netlify builds the Angular application from `frontend` using Node.js 24 and publishes `frontend/dist/frontend/browser`. The repository's `netlify.toml` configures these settings. The build command explicitly launches Node.js 24.15.0 through `npm exec` so CLI-driven deployments use a compatible runtime even when their parent process still uses Node.js 20. Within that runtime, it runs `npm ci --include=dev` using the committed frontend lockfile before running the production build, ensuring Angular CLI and the compiler are available even when the deployment runner skips dependency installation or omits development dependencies.
+
+The frontend's `public/_redirects` file is copied into the published output so routes such as `/home`, `/send-money`, and `/admin` work when opened directly or refreshed. The HTML entry point and service worker are configured to revalidate so browsers can pick up new deployments.
+
+Build errors fail the deployment rather than falling back to checked-in build output. Netlify generates the production output from the current source on each deployment.
+
+This deploys the frontend only. The existing frontend still uses the separately hosted API at `https://api.threeapp.site` unless overridden in the application. API availability and its CORS configuration must support the Netlify site origin for backend features to work.
+
 ## 🚀 How to Run
 
 ### Start the Application
