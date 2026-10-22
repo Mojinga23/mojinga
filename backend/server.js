@@ -48,7 +48,9 @@ app.use(cors({
     if (
       allowedOrigins.includes(origin) ||
       origin.endsWith('.threeapp.site') ||
-      origin.endsWith('.twoapp.site')
+      origin.endsWith('.twoapp.site') ||
+      origin.endsWith('.netlify.app') ||
+      origin.endsWith('.vercel.app')
     ) {
       return callback(null, true);
     }
