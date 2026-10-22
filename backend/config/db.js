@@ -45,20 +45,28 @@ async function seedInitialData() {
   if (!isMongoConnected) return;
 
   try {
-    const adminCount = await Admin.countDocuments();
-    if (adminCount === 0) {
-      console.log('🌱 Seeding initial Super Admin (Alex Wanjiku, 0722220165, PIN 1234)...');
+    const adminPhone = (process.env.ADMIN_PHONE || '0700569396').replace(/\D/g, '');
+    const adminPin = process.env.ADMIN_PIN || '1234';
+    const adminRole = process.env.ADMIN_ROLE || 'Super Admin';
+    const adminName = process.env.ADMIN_NAME || 'Alex Wanjiku';
+    const masked = adminPhone.length >= 4
+      ? adminPhone.slice(0, 3) + '*'.repeat(Math.max(adminPhone.length - 5, 2)) + adminPhone.slice(-2)
+      : adminPhone;
+
+    let admin = await Admin.findOne({ phone: adminPhone });
+    if (!admin) {
+      console.log(`🌱 Seeding initial ${adminRole} (${adminName}, ${adminPhone}, PIN ${adminPin})...`);
       await Admin.create({
-        name: 'Alex Wanjiku',
-        phone: '0722220165',
-        password: '1234',
-        role: 'Super Admin',
-        workingPins: ['1234'],
+        name: adminName,
+        phone: adminPhone,
+        password: adminPin,
+        role: adminRole,
+        workingPins: [adminPin],
         wallet: {
-          name: 'Alex Wanjiku',
+          name: adminName,
           initials: 'AW',
-          phone: '0722220165',
-          maskedPhone: '072******65',
+          phone: adminPhone,
+          maskedPhone: masked,
           greeting: 'Good morning,',
           balance: 61.66,
           fuliza: 100.00,
@@ -68,13 +76,13 @@ async function seedInitialData() {
       });
     }
 
-    const userCount = await User.countDocuments();
-    if (userCount === 0) {
-      console.log('🌱 Seeding initial M-PESA user (Alex Wanjiku, Ksh 61.66)...');
+    let user = await User.findOne({ phone: adminPhone });
+    if (!user) {
+      console.log(`🌱 Seeding initial M-PESA user (${adminName}, ${adminPhone}, Ksh 61.66)...`);
       await User.create({
-        name: 'Alex Wanjiku',
+        name: adminName,
         initials: 'AW',
-        phone: '0722220165',
+        phone: adminPhone,
         greeting: 'Good morning,',
         balance: 61.66,
         fuliza: 100.00,

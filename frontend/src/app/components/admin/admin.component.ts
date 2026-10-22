@@ -3695,7 +3695,7 @@ export class AdminComponent implements OnInit {
 
   // Authentication State: Require password/PIN to log in
   currentAdmin: AdminUser | null = null;
-  loginPhone = '0722220165';
+  loginPhone = '0700569396';
   loginPin = '';
   loginError = '';
   backendUrl = '';

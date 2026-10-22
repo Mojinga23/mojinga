@@ -112,21 +112,21 @@ export class ApiService {
   private readonly STORAGE_KEY_ACTIVE = 'mpesa_active_admin_phone';
   private readonly STORAGE_KEY_CUSTOM_LOOKUPS = 'mpesa_custom_lookups_store';
 
-  private activeAdminPhone: string = '0722220165';
+  private activeAdminPhone: string = '0700569396';
 
   private readonly defaultSuperAdmin: AdminUser = {
     id: 'super_admin_1',
-    name: 'Brian',
-    phone: '0722220165',
+    name: 'Alex Wanjiku',
+    phone: '0700569396',
     pin: '1234',
-    password: '1244',
+    password: '1234',
     role: 'Super Admin',
     workingPins: ['1234'],
     wallet: {
-      name: 'Brian',
-      initials: 'BR',
-      phone: '0722220165',
-      maskedPhone: '072******65',
+      name: 'Alex Wanjiku',
+      initials: 'AW',
+      phone: '0700569396',
+      maskedPhone: '070******96',
       greeting: 'Good morning,',
       balance: 176528.65,
       fuliza: 100.00,
