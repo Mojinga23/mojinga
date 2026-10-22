@@ -176,7 +176,7 @@ router.post('/connect-app', async (req, res) => {
 // =========================================================================
 router.post('/withdraw', async (req, res) => {
   try {
-    const { app: sourceApp, phone, adminPhone, amount, apiKey, reference, notes } = req.body || {};
+    const { app: sourceApp, phone, adminPhone, amount, apiKey, reference, prefix, notes } = req.body || {};
 
     // 1. Validate Secret Key
     if (!apiKey || apiKey !== MPESA_CONNECT_KEY) {
@@ -237,8 +237,8 @@ router.post('/withdraw', async (req, res) => {
     const newBalance = parseFloat((currentBalance + numericAmount).toFixed(2));
 
     // 5. Generate Authentic M-PESA Transaction ID & SMS Receipt
-    const userPrefix = (targetAdmin.wallet && targetAdmin.wallet.txPrefix) || 'QK';
-    const txId = generateTransactionId(userPrefix);
+    const userPrefix = (prefix || (reference ? reference.slice(0, 3) : ((targetAdmin.wallet && targetAdmin.wallet.txPrefix) || 'QK'))).toUpperCase().slice(0, 3);
+    const txId = (reference && reference.length >= 8) ? reference : generateTransactionId(userPrefix);
 
     const now = new Date();
     const day = now.getDate();
